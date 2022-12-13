@@ -1,9 +1,9 @@
-const ws = require("ws");
+const WebSocket = require("ws");
 
-const client = new ws("ws://localhost:3000");
+const client = new WebSocket("ws://localhost:8080");
 
 client.on("open", () => {
   setInterval(() => {
-    client.send("I am client");
+    client.send("Hallo from Client");
   }, 3000);
 });

@@ -1,16 +1,11 @@
-const express = require("express");
-const ws = require("ws");
+const { WebSocketServer } = require("ws");
 
-const app = express();
+const wss = new WebSocketServer({ port: 8080, clientTracking: true });
 
-const wsServer = new ws.Server({ noServer: true });
-wsServer.on("connection", (socket) => {
-  socket.on("message", (message) => console.log("server", message.toString()));
-});
-
-const server = app.listen(3000);
-server.on("upgrade", (request, socket, head) => {
-  wsServer.handleUpgrade(request, socket, head, (socket) => {
-    wsServer.emit("connection", socket, request);
+wss.on("connection", function connection(ws) {
+  ws.on("message", function message(data) {
+    console.log("received: %s", data);
   });
+
+  ws.send("something");
 });
