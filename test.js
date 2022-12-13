@@ -7,3 +7,7 @@ client.on("open", () => {
     client.send("Hallo from Client");
   }, 3000);
 });
+
+client.on("message", (data) => {
+  console.log("From Server:", data.toString());
+});
