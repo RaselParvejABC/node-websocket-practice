@@ -1,6 +1,6 @@
 const WebSocket = require("ws");
 
-const client = new WebSocket("ws://localhost:8080");
+const client = new WebSocket("ws://localhost:5000");
 
 client.on("open", () => {
   setInterval(() => {
